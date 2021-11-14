@@ -28,7 +28,7 @@ begin
     puts " [x] Received message: '#{body}'"
     puts " [x] Working..."
     sleep 2
-    send_message(body)
+    send_message(body.upcase)
     puts ' [x] Done'
     channel.ack(delivery_info.delivery_tag)
   end
