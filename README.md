@@ -2,7 +2,7 @@
 
 Demo básica de RabbitMQ
 
-## Instalar esto antes de ejecutar
+## Instalar antes de ejecutar
 
 Hay que tener instalado Java, Python, NodeJS y Ruby
 
@@ -30,4 +30,26 @@ python -m pip install pika --upgrade
 Instalar la librería amqp.node para la parte en JS
 ```
 npm install amqplib
+```
+
+## Guia de ejecución
+
+Levantar la webapp publisher en spring, ir al directorio publisher y ejecutar:
+```
+mvn spring-boot:run
+```
+
+Luego ejecutar la cantidad de redimension workers que se quiera, dentro del directorio redimension-worker ejecutar:
+```
+ruby redimension-worker.rb
+```
+
+Despues ejecutar el enviador de email, dentro del directorio email-sender-consumer ejecutar:
+```
+node email-sender-consumer.js
+```
+
+Por ultimo ejecutar el anotador de estadísticas, dentro del directorio stats-consumer ejecutar:
+```
+py stats-consumer.js
 ```
