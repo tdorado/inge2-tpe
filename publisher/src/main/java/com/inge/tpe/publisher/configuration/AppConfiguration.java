@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfiguration {
     @Bean
     public Queue hello() {
-        return new Queue("messages-ready");
+        return new Queue("messages-received");
     }
 
     @Bean
