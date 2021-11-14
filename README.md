@@ -4,7 +4,9 @@ Demo básica de RabbitMQ
 
 ## Instalar esto antes de ejecutar
 
-Primero instalar docker y docker-compose
+Hay que tener instalado Java, Python, NodeJS y Ruby
+
+Primero instalar docker y docker-compose 
 
 [Instalar docker](https://docs.docker.com/get-docker/)
 
@@ -13,6 +15,11 @@ Primero instalar docker y docker-compose
 Luego para levantar RabbitMQ en la instancia de docker ejecutar este comando en el directorio inge2-tpe:
 ```
 docker-compose up
+```
+
+Instalar la librería Bunny para la parte en Ruby
+```
+gem install bunny --version ">= 2.13.0"
 ```
 
 Instalar Pika para la parte en Python
