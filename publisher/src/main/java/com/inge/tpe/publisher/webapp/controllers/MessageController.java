@@ -30,10 +30,9 @@ public class MessageController {
     @PostMapping("/sendMessage")
     public RedirectView sendMessage(@ModelAttribute("message") Message message, RedirectAttributes redirectAttributes) {
         final RedirectView redirectView = new RedirectView("/", true);
-        Message sentMessage = messageSender.send(message);
-        if (sentMessage != null) {
+        if (messageSender.send(message.getTextMessage())) {
             redirectAttributes.addFlashAttribute("sentMessageSuccess", true);
-            redirectAttributes.addFlashAttribute("sentMessage", sentMessage);
+            redirectAttributes.addFlashAttribute("sentMessage", message);
         }
         return redirectView;
     }

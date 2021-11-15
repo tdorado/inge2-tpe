@@ -1,6 +1,5 @@
 package com.inge.tpe.publisher.amqp;
 
-import com.inge.tpe.publisher.models.Message;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -14,13 +13,14 @@ public class MessageSender {
     @Autowired
     private Queue queue;
 
-    public Message send(Message message) {
+    public boolean send(String message) {
         try {
-            this.template.convertAndSend(queue.getName(), message.getTextMessage());
+            this.template.convertAndSend(queue.getName(), message);
         } catch (AmqpException e) {
             System.out.println("Error: [x] Sending '" + message + "'");
+            return false;
         }
         System.out.println(" [x] Sent '" + message + "'");
-        return message;
+        return true;
     }
 }
