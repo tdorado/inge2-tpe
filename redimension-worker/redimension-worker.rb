@@ -21,7 +21,7 @@ channel = connection.create_channel
 queue = channel.queue('messages-received', durable: true)
 
 channel.prefetch(1)
-puts ' [*] Waiting for messages. To exit press CTRL+C'
+puts ' [*] Waiting for messages in messages-received. To exit press CTRL+C'
 
 begin
   queue.subscribe(manual_ack: true, block: true) do |delivery_info, _properties, body|

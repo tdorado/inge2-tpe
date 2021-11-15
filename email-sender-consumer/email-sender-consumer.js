@@ -16,18 +16,21 @@ amqp.connect('amqp://localhost', function(error0, connection) {
       durable: false
     });
 
-    channel.assertQueue('', {
-      exclusive: true
+    channel.assertQueue('email-messages', {
+      exclusive: false
     }, function(error2, q) {
       if (error2) {
         throw error2;
       }
-      console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q.queue);
-      channel.bindQueue(q.queue, exchange, '');
+      console.log(" [*] Waiting for messages in messages-parsed/email-messages. To exit press CTRL+C");
+      channel.bindQueue(q.queue, exchange, 'email-messages');
 
       channel.consume(q.queue, function(msg) {
         if(msg.content) {
-            console.log(" [x] %s", msg.content.toString());
+            message = msg.content.toString();
+            console.log(" [x] Message received: %s",message);
+            console.log(" [x] Sending email...");
+            console.log(" [x] Done");
           }
       }, {
         noAck: true
