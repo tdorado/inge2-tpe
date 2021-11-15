@@ -31,8 +31,10 @@ public class MessageController {
     public RedirectView sendMessage(@ModelAttribute("message") Message message, RedirectAttributes redirectAttributes) {
         final RedirectView redirectView = new RedirectView("/", true);
         Message sentMessage = messageSender.send(message);
-        redirectAttributes.addFlashAttribute("addBookSuccess", true);
-        redirectAttributes.addFlashAttribute("sentMessage", sentMessage);
+        if (sentMessage != null) {
+            redirectAttributes.addFlashAttribute("sentMessageSuccess", true);
+            redirectAttributes.addFlashAttribute("sentMessage", sentMessage);
+        }
         return redirectView;
     }
 }
